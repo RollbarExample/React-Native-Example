@@ -5,8 +5,6 @@
  */
 
 import React, { Component } from 'react';
-import { Client } from 'rollbar-react-native'
-import { setJSExceptionHandler, getJSExceptionHandler } from 'react-native-exception-handler';
 import {
   Platform,
   StyleSheet,
@@ -15,50 +13,16 @@ import {
   Button, Alert
 } from 'react-native';
 
-const rollbar = new Client('084353b783e84e78a14647932b859000');
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {};
-}
-FunctionToOpenSecondActivity = () =>
-{
-    try{
-      var test;
-      test.color;
-    }catch(e){
-      rollbar.error(e);
-    }
-    
-}
+  }
 
-_onPressButton() {
-  const reporter = (error) => {
-    console.log(error); 
-    rollbar.error(error);   
-  };
-  const errorHandler = (e, isFatal) => {
-    if (isFatal) {
-      reporter(e);
-     
-      Alert.alert(
-        'Unexpected error occurred',
-        `Error: ${(isFatal) ? 'Fatal:' : ''} ${e.name} ${e.message}
-          This is crash.`,
-        [{
-          text: 'Close',
-          onPress: () => {
-            BackAndroid.exitApp();
-          }}]);
-    } else {
-      console.log(e);
-    }
-  };
-setJSExceptionHandler(errorHandler);
-  setNativeExceptionHandler((errorString) => {
-   //  rollbar.error(errorString);//send it to Rollbar
-  });
-}
+  generateError = () => {
+    var test;
+    test.color;
+  }
 
   render() {
     return (
@@ -66,8 +30,8 @@ setJSExceptionHandler(errorHandler);
         <Text style={styles.welcome}>
           Rollbar Example
         </Text>
-        <View  style={styles.loginButton} >
-        <Button   onPress={this._onPressButton} title = 'Create an Error'  />
+        <View style={styles.loginButton} >
+          <Button onPress={this.generateError} title='Generates an Error' />
         </View>
       </View>
     );
@@ -86,14 +50,14 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 22,
     color: '#8a2be2',
-    marginTop:10
+    marginTop: 10
   },
- 
-  loginButton:{
-    flex:1,
+
+  loginButton: {
+    flex: 1,
     justifyContent: 'center',
-    flexDirection:'column',
+    flexDirection: 'column',
     alignItems: 'center',
-     color: '#fff'
+    color: '#fff'
   }
 });
