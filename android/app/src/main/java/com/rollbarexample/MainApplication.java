@@ -43,6 +43,6 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    RollbarReactNative.init(this, "MY-ACCESS-TOKEN", "production");
+    RollbarReactNative.init(this, "d6a4de1fe4514a408b227471c1475dc0", "production");
   }
 }

@@ -3,8 +3,8 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
+
 import {
   Platform,
   StyleSheet,
@@ -17,11 +17,13 @@ export default class App extends Component<{}> {
   constructor(props) {
     super(props);
     this.state = {};
+   
   }
 
   generateError = () => {
     var test;
     test.color;
+    
   }
 
   render() {
